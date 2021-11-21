@@ -34,7 +34,11 @@ const onClickAdd = () => {
   div.appendChild(deleteButton);
 
   // 未完了リストに追加
-  document.getElementById("incomplete-task").appendChild(li);
+  var numOfTask = document.getElementsByClassName("incomplete-task").length;
+  console.log(numOfTask);
+  document
+    .getElementsByClassName("incomplete-task")
+    [numOfTask - 1].appendChild(li);
 };
 
 document
