@@ -6,7 +6,7 @@ const onClickAdd = () => {
   // テキストボックス初期化
   document.getElementById("add-text").value = "";
 
-  // test: li生成
+  // li生成
   const li = document.createElement("li");
   li.className = "incomplete-task";
 
@@ -14,7 +14,7 @@ const onClickAdd = () => {
   const div = document.createElement("div");
   div.className = "list-row";
 
-  // test: liタグの子要素にdivを設定
+  // liタグの子要素にdivを設定
   li.appendChild(div);
 
   // p生成
@@ -27,6 +27,41 @@ const onClickAdd = () => {
   completeButton.addEventListener("click", () => {
     // 押された完了ボタンの親タグ(div)を未完了リストから削除
     deleteFromIncompleteList(completeButton.parentNode.parentNode);
+
+    // 完了リストに追加する要素
+    const addTarget = completeButton.parentNode.parentNode;
+
+    // TODO内容テキスト取得
+    const text = addTarget.firstElementChild.firstElementChild.innerText;
+
+    // div以下初期化
+    addTarget.textContent = null;
+
+    // test: li生成
+    const li = document.createElement("li");
+    li.className = "complete-task";
+
+    // test: div生成
+    const div = document.createElement("div");
+    div.className = "list-row";
+
+    // test: liタグの子要素にdivを設定
+    li.appendChild(div);
+
+    // p生成
+    const p = document.createElement("p");
+    p.innerText = text;
+
+    // button生成
+    const backButton = document.createElement("button");
+    backButton.innerText = "戻す";
+
+    // test: divタグの子要素にpを設定
+    div.appendChild(p);
+    div.appendChild(backButton);
+
+    // 完了リストに追加
+    document.getElementById("complete-list").appendChild(li);
   });
 
   // 削除ボタン
